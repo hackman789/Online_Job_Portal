@@ -1,0 +1,108 @@
+{% load static %}
+{% block body%}
+{% include 'navigation.html'%}
+
+<hr>
+<form class ="container mt-5" method ="post">
+    {% csrf_token %}
+    <style>
+     * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+      color: #b38bff;
+      font-size: 18px;
+      transition: color 0.2s ease-in-out;
+    }
+    a:hover {
+      color: #8c5fb2;
+    }
+
+    p {
+      text-align: center;
+      margin: 8px;
+    }
+
+.form-container {
+      width: 600px;
+      margin: 0 auto;
+      padding: 50px;
+      background-color: #A24857;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 36px;
+      color: #b38bff;
+    }
+        form {
+      display: flex;
+      flex-direction: column;
+    }
+
+     label {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+      input {
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #555;
+    }
+      button {
+      padding: 10px;
+      background-color: #b38bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+
+
+
+
+</style>
+
+  <body style="background-color: #f8f9fa;"> <!-- Set a light background color for the entire body -->
+    <div class="container">
+      <!-- Login Form Container -->
+      <div class="form-container" id="login-form" style="background-color: black; color: white; padding: 20px; border-radius: 10px; margin-top: 50px;">
+        <h1>Login</h1>
+        <form>
+          <label>Username</label>
+          <input type="text" class ="form-control" name="uname" required>
+          <label>Password</label>
+          <input type="password" id="password" class ="form-control" name="pwd" required>
+          <button type="submit">Login</button>
+        </form>
+
+      </div>
+
+{% if error == "no" %}
+<script>
+    alert("Login Successful");
+    window.location.href = "{% url 'admin_home' %}";
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Invalid login credentials, Try Again...");
+</script>
+{% endif %}
+
+
+{% endblock%}
